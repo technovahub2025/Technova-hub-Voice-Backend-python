@@ -9,8 +9,20 @@ except ImportError:
     WHISPER_AVAILABLE = False
     whisper = None
 
-import numpy as np
-import soundfile as sf
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+    np = None
+
+try:
+    import soundfile as sf
+    SOUNDFILE_AVAILABLE = True
+except ImportError:
+    SOUNDFILE_AVAILABLE = False
+    sf = None
+
 import io
 import time
 from functools import lru_cache
@@ -71,9 +83,42 @@ class STTService:
         """
         start_time = time.time()
         
-        # Check if Whisper is available
-        if not WHISPER_AVAILABLE or self._model is None:
+        # Check if required modules are available
+        if not WHISPER_AVAILABLE:
             error_msg = "Whisper STT service not available - module not installed"
+            logger.error(error_msg)
+            return {
+                "success": False,
+                "text": "",
+                "language": "",
+                "duration": time.time() - start_time,
+                "error": error_msg
+            }
+        
+        if not NUMPY_AVAILABLE:
+            error_msg = "NumPy module not available - STT service disabled"
+            logger.error(error_msg)
+            return {
+                "success": False,
+                "text": "",
+                "language": "",
+                "duration": time.time() - start_time,
+                "error": error_msg
+            }
+        
+        if not SOUNDFILE_AVAILABLE:
+            error_msg = "SoundFile module not available - STT service disabled"
+            logger.error(error_msg)
+            return {
+                "success": False,
+                "text": "",
+                "language": "",
+                "duration": time.time() - start_time,
+                "error": error_msg
+            }
+        
+        if self._model is None:
+            error_msg = "Whisper model not loaded - STT service disabled"
             logger.error(error_msg)
             return {
                 "success": False,
@@ -177,4 +222,7 @@ class STTService:
     
     def health_check(self) -> bool:
         """Check if service is healthy"""
-        return WHISPER_AVAILABLE and self._model is not None
+        return (WHISPER_AVAILABLE and 
+                NUMPY_AVAILABLE and 
+                SOUNDFILE_AVAILABLE and 
+                self._model is not None)
