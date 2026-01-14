@@ -1,17 +1,17 @@
 # Core Framework
-fastapi==0.108.0
-uvicorn[standard]==0.25.0
-python-multipart==0.0.6
-pydantic==2.5.0
-pydantic-settings==2.1.0
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
 
 # AI Services (Cloud)
-groq==0.4.2
-edge-tts==6.1.9
+groq
+edge-tts
 # torch -- removed for lightweight
 # transformers -- removed for lightweight
 # openai-whisper -- removed for lightweight
 
 # Utilities
-python-dotenv==1.0.0
-python-json-logger==2.0.7
+python-dotenv
+python-json-logger
