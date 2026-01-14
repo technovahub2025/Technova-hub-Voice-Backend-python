@@ -152,42 +152,42 @@ async def process_text(data: dict):
         logger.error(f"Process text error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/test-stt")
-async def test_stt(audio: UploadFile = File(...), language: str = "en"):
-    """Test STT only"""
-    try:
-        audio_data = await audio.read()
-        result = await pipeline.stt.transcribe_audio(audio_data, language)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+# @app.post("/test-stt")
+# async def test_stt(audio: UploadFile = File(...), language: str = "en"):
+#     """Test STT only"""
+#     try:
+#         audio_data = await audio.read()
+#         result = await pipeline.stt.transcribe_audio(audio_data, language)
+#         return result
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/test-ai")
-async def test_ai(data: dict):
-    """Test AI only"""
-    try:
-        message = data.get("message", "Hello")
-        call_id = data.get("call_id", "test")
-        result = await pipeline.ai.get_response(message, call_id)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+# @app.post("/test-ai")
+# async def test_ai(data: dict):
+#     """Test AI only"""
+#     try:
+#         message = data.get("message", "Hello")
+#         call_id = data.get("call_id", "test")
+#         result = await pipeline.ai.get_response(message, call_id)
+#         return result
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/test-tts")
-async def test_tts(data: dict):
-    """Test TTS only"""
-    try:
-        text = data.get("text", "Hello, this is a test.")
-        result = await pipeline.tts.text_to_speech_bytes(text)
-        if result["success"]:
-            return {
-                "success": True,
-                "audio_base64": result["audio_data"].hex(),
-                "format": result["format"]
-            }
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+# @app.post("/test-tts")
+# async def test_tts(data: dict):
+#     """Test TTS only"""
+#     try:
+#         text = data.get("text", "Hello, this is a test.")
+#         result = await pipeline.tts.text_to_speech_bytes(text)
+#         if result["success"]:
+#             return {
+#                 "success": True,
+#                 "audio_base64": result["audio_data"].hex(),
+#                 "format": result["format"]
+#             }
+#         return result
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/voices")
 async def list_voices(language: str = "en"):

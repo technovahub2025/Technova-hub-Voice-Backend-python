@@ -23,8 +23,8 @@ class Settings(BaseSettings):
     MISTRAL_API_KEY: Optional[str] = None       # Paid alternative
     
     # STT Configuration
-    WHISPER_MODEL: str = "base"                 # tiny, base, small, medium, large
-    WHISPER_DEVICE: str = "cpu"                 # cpu or cuda
+    WHISPER_MODEL: str = "distil-whisper-large-v3-en" # Groq Cloud Model
+    WHISPER_DEVICE: str = "cpu"                 # Ignored for Cloud STT
     WHISPER_LANGUAGE: str = "en"
     
     # AI Configuration

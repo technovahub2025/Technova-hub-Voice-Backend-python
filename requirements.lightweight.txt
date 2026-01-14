@@ -5,12 +5,9 @@ python-multipart==0.0.6
 pydantic==2.5.0
 pydantic-settings==2.1.0
 
-# AI Services (Cloud)
-groq==0.4.2
-edge-tts==6.1.9
-# torch -- removed for lightweight
-# transformers -- removed for lightweight
-# openai-whisper -- removed for lightweight
+# AI model
+torch==2.2.0      # lightweight CPU install
+transformers==4.40.0
 
 # Utilities
 python-dotenv==1.0.0
