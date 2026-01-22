@@ -19,12 +19,19 @@ class TTSService:
     
     # Popular Edge TTS voices
     VOICES = {
-        "en-US-male": "en-US-GuyNeural",
-        "en-US-female": "en-US-AriaNeural",
+        # Tamil voices
+        "ta-IN-male": "ta-IN-ValluvarNeural",
+        "ta-IN-female": "ta-IN-PallaviNeural",
+        
+        # British English voices
         "en-GB-male": "en-GB-RyanNeural",
         "en-GB-female": "en-GB-SoniaNeural",
-        "en-IN-male": "en-IN-PrabhatNeural",
-        "en-IN-female": "en-IN-NeerjaNeural",
+        
+        # Other voices (commented out)
+        # "en-US-male": "en-US-GuyNeural",
+        # "en-US-female": "en-US-AriaNeural",
+        # "en-IN-male": "en-IN-PrabhatNeural",
+        # "en-IN-female": "en-IN-NeerjaNeural",
     }
     
     def __init__(self):

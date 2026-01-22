@@ -8,9 +8,6 @@ pydantic-settings
 # AI Services (Cloud)
 groq
 edge-tts
-# torch -- removed for lightweight
-# transformers -- removed for lightweight
-# openai-whisper -- removed for lightweight
 
 # Utilities
 python-dotenv
