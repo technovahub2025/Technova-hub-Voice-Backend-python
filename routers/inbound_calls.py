@@ -220,7 +220,7 @@ async def websocket_queue_monitor(websocket: WebSocket):
         await websocket.send_json({
             "type": "info",
             "message": "Queue monitoring is handled by Node.js backend",
-            "nodejs_url": "http://localhost:5000/inbound/queues/monitor",
+            "nodejs_url": "https://technova-hub-voice-backend-node-hxg7.onrender.com/inbound/queues/monitor",
             "timestamp": datetime.now(timezone.utc).isoformat()
         })
         
